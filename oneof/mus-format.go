@@ -6,7 +6,7 @@ import (
 
 	com "github.com/mus-format/common-go"
 	dts "github.com/mus-format/dts-go"
-	"github.com/mus-format/ext-mus-go"
+	"github.com/mus-format/ext-go"
 	"github.com/mus-format/mus-go/ord"
 	"github.com/mus-format/mus-go/varint"
 )
@@ -37,7 +37,8 @@ func (s instructionMUS) Marshal(in Instruction, bs []byte) (n int) {
 	if m, ok := in.(ext.MarshallerTypedMUS); ok {
 		return m.MarshalTypedMUS(bs)
 	}
-	panic(fmt.Sprintf("%v doesn't implement the ext.MarshallerTypedMUS interface", reflect.TypeOf(in)))
+	panic(fmt.Sprintf("%v doesn't implement the ext.MarshallerTypedMUS interface",
+		reflect.TypeOf(in)))
 }
 
 func (s instructionMUS) Unmarshal(bs []byte) (in Instruction, n int, err error) {
@@ -47,10 +48,10 @@ func (s instructionMUS) Unmarshal(bs []byte) (in Instruction, n int, err error) 
 	}
 	var n1 int
 	switch dtm {
-	case CopyDTM:
+	case CopyDTS.DTM():
 		in, n1, err = CopyDTS.UnmarshalData(bs[n:])
 		n += n1
-	case InsertDTM:
+	case InsertDTS.DTM():
 		in, n1, err = InsertDTS.UnmarshalData(bs[n:])
 		n += n1
 	default:
@@ -63,7 +64,8 @@ func (s instructionMUS) Size(in Instruction) (size int) {
 	if s, ok := in.(ext.MarshallerTypedMUS); ok {
 		return s.SizeTypedMUS()
 	}
-	panic(fmt.Sprintf("%v doesn't implement the ext.MarshallerTypedMUS interface", reflect.TypeOf(in)))
+	panic(fmt.Sprintf("%v doesn't implement the ext.MarshallerTypedMUS interface",
+		reflect.TypeOf(in)))
 }
 
 // copyMUS implements mus.Serializer for Copy.
