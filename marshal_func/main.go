@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	ext "github.com/mus-format/ext-mus-go"
+	"github.com/mus-format/ext-go"
 )
 
 func main() {
