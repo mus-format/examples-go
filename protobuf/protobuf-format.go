@@ -31,7 +31,7 @@ var (
 	DataV1Protobuf = dataV1Protobuf{}
 	DataV2Protobuf = dataV2Protobuf{}
 
-	SliceProtobuf = ext.NewSliceProtobuf(varint.Int32)
+	SliceProtobuf = ext.NewSliceSer(varint.Int32)
 )
 
 // Protobuf tags of the DataV1 and DataV2 fields.
@@ -75,7 +75,7 @@ func (s dataV1Protobuf) Marshal(data *DataV1, bs []byte) (n int) {
 	}
 	if data.Time != nil && (data.Time.Seconds != 0 || data.Time.Nanos != 0) {
 		n += varint.Uint64.Marshal(timeFieldTag, bs[n:])
-		n += ext.TimestampNativeProtobuf.Marshal(data.Time, bs[n:])
+		n += ext.TimestampNativeSer.Marshal(data.Time, bs[n:])
 	}
 	return
 }
@@ -109,7 +109,7 @@ func (s dataV1Protobuf) Unmarshal(bs []byte) (data *DataV1, n int, err error) {
 		case sliceFieldTag:
 			data.Slice, n1, err = SliceProtobuf.Unmarshal(bs[n:])
 		case timeFieldTag:
-			data.Time, n1, err = ext.TimestampNativeProtobuf.Unmarshal(bs[n:])
+			data.Time, n1, err = ext.TimestampNativeSer.Unmarshal(bs[n:])
 		default:
 			err = fmt.Errorf("unexpected tag %v", tag)
 		}
@@ -144,7 +144,7 @@ func (s dataV1Protobuf) Size(data *DataV1) (size int) {
 	}
 	if data.Time != nil && (data.Time.Seconds != 0 || data.Time.Nanos != 0) {
 		size += varint.Uint64.Size(timeFieldTag)
-		size += ext.TimestampNativeProtobuf.Size(data.Time)
+		size += ext.TimestampNativeSer.Size(data.Time)
 	}
 	return
 }
@@ -167,7 +167,7 @@ func (s dataV2Protobuf) Marshal(data *DataV2, bs []byte) (n int) {
 	}
 	if data.Time != nil && (data.Time.Seconds != 0 || data.Time.Nanos != 0) {
 		n += varint.Uint64.Marshal(timeFieldTag, bs[n:])
-		n += ext.TimestampNativeProtobuf.Marshal(data.Time, bs[n:])
+		n += ext.TimestampNativeSer.Marshal(data.Time, bs[n:])
 	}
 	return
 }
@@ -199,7 +199,7 @@ func (s dataV2Protobuf) Unmarshal(bs []byte) (data *DataV2, n int, err error) {
 			// Slice field was remove in DataV2, so simply skip it here.
 			n1, err = SliceProtobuf.Skip(bs[n:])
 		case timeFieldTag:
-			data.Time, n1, err = ext.TimestampNativeProtobuf.Unmarshal(bs[n:])
+			data.Time, n1, err = ext.TimestampNativeSer.Unmarshal(bs[n:])
 		default:
 			err = fmt.Errorf("unexpected tag %v", tag)
 		}
@@ -226,7 +226,7 @@ func (s dataV2Protobuf) Size(data *DataV2) (size int) {
 	}
 	if data.Time != nil && (data.Time.Seconds != 0 || data.Time.Nanos != 0) {
 		size += varint.Uint64.Size(timeFieldTag)
-		size += ext.TimestampNativeProtobuf.Size(data.Time)
+		size += ext.TimestampNativeSer.Size(data.Time)
 	}
 	return
 }

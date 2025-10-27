@@ -8,8 +8,8 @@ github.com/mus-format/dts-go v0.9.1 h1:GGobJZxByPs1ogyim1MEnurVUoyHIUCuHte+2kcCY
 github.com/mus-format/dts-go v0.9.1/go.mod h1:Al8gGSihZqHuR8zhrssbbJYg4S4UdUrEDgfi+DU9k98=
 github.com/mus-format/ext-go v0.0.0-20251026170738-8e62affd4efd h1:W/Pih58lBtVCTfqNNr6AivZ4C+a6gODyt8QAEnBy1E4=
 github.com/mus-format/ext-go v0.0.0-20251026170738-8e62affd4efd/go.mod h1:6yMSKvJ9DQ/l6YdIcgFM0RYJB/Xm4ZAzj5XZoS2Cusk=
-github.com/mus-format/ext-protobuf-go v0.0.0-20251026171149-2e3da8b2ccaa h1:KgXqUIhxT/6pVqtoYoEI8hp5EOiQBjVWyiY8z4MCF70=
-github.com/mus-format/ext-protobuf-go v0.0.0-20251026171149-2e3da8b2ccaa/go.mod h1:M9O2pETYUPT4gNlFXaOyjROc/J9GOyuUNh9GOkhx1jo=
+github.com/mus-format/ext-protobuf-go v0.0.0-20251027224158-2708953a4db3 h1:8ZOMSliqOXygiyzJvZsO2/8p9zXzWKlJcbrMMuAdAcQ=
+github.com/mus-format/ext-protobuf-go v0.0.0-20251027224158-2708953a4db3/go.mod h1:97o5oawW7q7/Untma/T8rKuOErk+eA3/ZMfr7PietdI=
 github.com/mus-format/mus-go v0.7.2 h1:CPrrcScbpzJsLYaKkz0Y6KXH2cWG53ZpVFX3BoKkNoI=
 github.com/mus-format/mus-go v0.7.2/go.mod h1:RM3Lemg6Ui4nl67q2eMFNqsh+Tn2nkjony+4phpuIZk=
 github.com/ymz-ncnk/assert v0.0.0-20250528151733-c41b2fca7933 h1:V48ApBa/TSsGNKnIapVQs1q/5+HAaOk51b24L8yuPpA=
