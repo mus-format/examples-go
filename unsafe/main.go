@@ -7,6 +7,7 @@ import (
 	"github.com/mus-format/mus-go/unsafe"
 )
 
+// This example demonstrates how the unsafe package can be used.
 func main() {
 	var (
 		bs   = make([]byte, 10) // Long enough bs to store all read data.

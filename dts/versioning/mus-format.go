@@ -36,8 +36,7 @@ func (s fooV1MUS) Marshal(foo FooV1, bs []byte) (n int) {
 	return varint.Int.Marshal(foo.num, bs)
 }
 
-func (s fooV1MUS) Unmarshal(bs []byte) (foo FooV1,
-	n int, err error) {
+func (s fooV1MUS) Unmarshal(bs []byte) (foo FooV1, n int, err error) {
 	foo.num, n, err = varint.Int.Unmarshal(bs[n:])
 	return
 }
@@ -58,7 +57,8 @@ func (s fooV2MUS) Marshal(foo FooV2, bs []byte) (n int) {
 }
 
 func (s fooV2MUS) Unmarshal(bs []byte) (foo FooV2,
-	n int, err error) {
+	n int, err error,
+) {
 	foo.str, n, err = ord.String.Unmarshal(bs[n:])
 	return
 }

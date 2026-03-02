@@ -4,13 +4,13 @@ go 1.23.0
 
 require (
 	github.com/brianvoe/gofakeit v3.18.0+incompatible
-	github.com/mus-format/common-go v0.0.0-20251026152644-9f5ac6728d8a
-	github.com/mus-format/dts-go v0.9.1
-	github.com/mus-format/ext-go v0.0.0-20251026170738-8e62affd4efd
-	github.com/mus-format/ext-protobuf-go v0.0.0-20251027224158-2708953a4db3
-	github.com/mus-format/mus-go v0.7.2
-	github.com/ymz-ncnk/assert v0.0.0-20250528151733-c41b2fca7933
-	github.com/ymz-ncnk/mok v0.2.1
+	github.com/mus-format/common-go v0.0.0-20260225152706-590b1bf7cb37
+	github.com/mus-format/dts-go v0.10.0
+	github.com/mus-format/ext-go v0.0.0-20260225214202-175dbc87055c
+	github.com/mus-format/ext-protobuf-go v0.0.0-20260225215036-5b3eb876e4a6
+	github.com/mus-format/mus-go v0.8.0
+	github.com/ymz-ncnk/assert v0.0.0-20260108210721-155bc9aa4282
+	github.com/ymz-ncnk/mok v0.2.2
 	google.golang.org/protobuf v1.36.6
 )
 

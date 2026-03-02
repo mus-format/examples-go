@@ -1,4 +1,9 @@
-# protobuf
-In this example, Protobuf encoding is implemented using mus-go. There are two 
-structures `DataV1` and `DataV2`, the latter is identical to `DataV1` except it 
-lacks the `Bool` and `Slice` fields.
+# Protobuf Example
+
+This example demonstrates how to implement Protobuf encoding using 
+[mus-go](https://github.com/mus-format/mus-go).
+
+It shows:
+- Full compatibility with the Protobuf format.
+- Interoperability between standard Protobuf and MUS implementations.
+- Handling of different data versions (`DataV1` and `DataV2`).

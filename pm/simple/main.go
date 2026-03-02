@@ -20,15 +20,14 @@ func SerializeTwoPtrs() {
 		v          = NewTwoPtrs("the same pointer in two fields")
 	)
 
-	// Marshal TwoPtrs.
+	// 1. Marshal TwoPtrs.
 	bs := make([]byte, twoPtrsSer.Size(v))
 	twoPtrsSer.Marshal(v, bs)
 
-	// After unmarshal, v.ptr1 and av.ptr2 fields will contain the same
-	// pointer.
+	// 2. Unmarshal TwoPtrs.
 	av, _, err := twoPtrsSer.Unmarshal(bs)
 	assert.EqualError(err, nil)
-	assert.Equal[*string](av.ptr1, av.ptr2)
+	assert.Equal(av.ptr1, av.ptr2)
 }
 
 func SerializeThreePtrs() {
@@ -38,15 +37,15 @@ func SerializeThreePtrs() {
 		v            = NewThreePtrs("the same pointer in three fields")
 	)
 
-	// Marshal ThreePtrs.
+	// 1. Marshal ThreePtrs.
 	bs := make([]byte, threePtrsSer.Size(v))
 	threePtrsSer.Marshal(v, bs)
 
-	// After unmarshal, all fields will contain the same pointer.
+	// 2. Unmarshal ThreePtrs.
 	av, _, err := threePtrsSer.Unmarshal(bs)
 	assert.EqualError(err, nil)
-	assert.Equal[*string](av.ptr1, av.ptr2)
-	assert.Equal[*string](av.ptr1, av.ptr3)
+	assert.Equal(av.ptr1, av.ptr2)
+	assert.Equal(av.ptr1, av.ptr3)
 }
 
 func NewTwoPtrs(str string) TwoPtrs {

@@ -6,12 +6,13 @@ import (
 	"github.com/mus-format/ext-go"
 )
 
+// This example demonstrates how to use the MarshalMUS function.
 func main() {
-	// Both Foo and Bar types implement ext.MarshallerMUS interface.
-
-	bs := ext.MarshalMUS(Foo{num: 10}) // ext.MarshalMUS can be used with Foo ...
+	// 1. Marshal Foo.
+	bs := ext.MarshalMUS(Foo{num: 10})
 	fmt.Println(bs)
 
-	bs = ext.MarshalMUS(Bar{str: "10"}) // ... and with Bar.
+	// 2. Marshal Bar.
+	bs = ext.MarshalMUS(Bar{str: "10"})
 	fmt.Println(bs)
 }

@@ -1,8 +1,8 @@
-# pm
-Includes three examples:
-- `graph` - demonstrates how to serialize a graph structure using the pm package.
-- `linked_list` - shows how to serialize a linked list with the pm package.
-- `simple` - offers a general demonstration of how the pm package works.
+# Pointer Mapping (PM) Examples
 
-These examples highlight the flexibility of pm in handling complex data 
-structures as well as simple use cases.
+This directory demonstrates how to use the `pm` package to handle duplicate 
+pointers and circular dependencies.
+
+- [simple](simple/): Basics of pointer mapping.
+- [linked_list](linked_list/): Serialization of a linked list.
+- [graph](graph/): Serialization of a graph with circular references.

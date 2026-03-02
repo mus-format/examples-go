@@ -8,15 +8,17 @@ import (
 	dts "github.com/mus-format/dts-go"
 )
 
+// This example demonstrates how to use DTM (Data Type Metadata) to handle
+// different data types.
 func main() {
-	// Make a random data and Unmarshal DTM.
+	// 1. Unmarshal DTM (Data Type Metadata) to identify the data type.
 	bs := randomData()
 	dtm, n, err := dts.DTMSer.Unmarshal(bs)
 	if err != nil {
 		panic(err)
 	}
 
-	// Deserialize and process data depending on the DTM.
+	// 2. Unmarshal the actual data based on the DTM.
 	switch dtm {
 	case FooDTM:
 		foo, _, err := FooDTS.UnmarshalData(bs[n:])
@@ -38,15 +40,14 @@ func main() {
 }
 
 func randomData() (bs []byte) {
-	// Generate a random DTM.
+	// 1. Generate a random DTM (Data Type Metadata).
 	dtm := com.DTM(rand.Intn(2) + 1)
 	switch dtm {
-	// Marshal Foo.
+	// 2. Marshal the corresponding data type.
 	case FooDTM:
 		foo := Foo{num: 5}
 		bs = make([]byte, FooDTS.Size(foo))
 		FooDTS.Marshal(foo, bs)
-	// Marshal Bar.
 	case BarDTM:
 		bar := Bar{str: "hello world"}
 		bs = make([]byte, BarDTS.Size(bar))

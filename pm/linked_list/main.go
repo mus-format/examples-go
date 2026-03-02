@@ -17,11 +17,11 @@ func main() {
 		ser = MakeLinkedListMUS[int](varint.PositiveInt)
 	)
 
-	// Marshal list.
+	// 1. Marshal list.
 	bs := make([]byte, ser.Size(v))
 	ser.Marshal(v, bs)
 
-	// Unmarshal list.
+	// 2. Unmarshal list.
 	av, _, err := ser.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.EqualDeep(v, av)

@@ -8,6 +8,7 @@ func init() {
 	assert.On = true
 }
 
+// This example demonstrates how to serialize and deserialize Go interfaces.
 func main() {
 	var (
 		bs  []byte
@@ -15,22 +16,20 @@ func main() {
 		err error
 	)
 
-	// Marshal Copy instruction.
+	// 1. Marshal/Unmarshal Copy instruction.
 	copy := Copy{start: 10, end: 20}
 	bs = make([]byte, InstructionMUS.Size(copy))
 	InstructionMUS.Marshal(copy, bs)
 
-	// Unmarshal Copy instruction.
 	in, _, err = InstructionMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.EqualDeep(in, copy)
 
-	// Marshal Insert instruction.
+	// 2. Marshal/Unmarshal Insert instruction.
 	insert := Insert{str: "hello world"}
 	bs = make([]byte, InstructionMUS.Size(insert))
 	InstructionMUS.Marshal(insert, bs)
 
-	// Unmarshal Insert instruction.
 	in, _, err = InstructionMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.EqualDeep(in, insert)

@@ -18,11 +18,11 @@ func main() {
 		ser = MakeGraphMUS(varint.Int, ord.String)
 	)
 
-	// Marshal graph.
+	// 1. Marshal graph.
 	bs := make([]byte, ser.Size(v))
 	ser.Marshal(v, bs)
 
-	// Unmarshal graph.
+	// 2. Unmarshal graph.
 	av, _, err := ser.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.EqualDeep(v, av)

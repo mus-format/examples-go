@@ -13,6 +13,7 @@ func init() {
 	assert.On = true
 }
 
+// This example demonstrates how to implement Protobuf encoding using mus-go.
 func main() {
 	var (
 		dataV1 = DataV1{
