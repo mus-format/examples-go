@@ -1,9 +1,9 @@
-# MUS Types Examples
-
-This directory contains examples of using the `mus-go` library with various Go 
-types.
-
-- [struct](struct/): Shows how to serialize a struct.
-- [slice](slice/): Shows how to serialize a slice.
-- [map](map/): Shows how to serialize a map.
-- [array](array/): Shows how to serialize an array.
+# Types Examples
+ 
+ This directory contains examples of using the `mus-go` library with various Go 
+ types.
+ 
+ - [array](array/): Serialize an array.
+ - [slice](slice/): Serialize a slice.
+ - [map](map/): Serialize a map.
+ - [struct](struct/): Serialize a struct.
