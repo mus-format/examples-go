@@ -13,7 +13,7 @@ func main() {
 	// 1. Initialize the serializer
 	// varint.Int specifies the serializer for the map’s keys, and ord.String -
 	// the serializer for the map’s values.
-	ser := ord.NewMapSer(varint.Int, ord.String)
+	mapMUS := ord.NewMapSer(varint.Int, ord.String)
 
 	// To specify length serializer use:
 	// ser = ord.NewMapSer[int, string](varint.Int, ord.String, mapops.WithLenSer(lenSer))
@@ -21,14 +21,14 @@ func main() {
 	// 2. Marshal
 	var (
 		m    = map[int]string{1: "one", 2: "two", 3: "three"}
-		size = ser.Size(m)
+		size = mapMUS.Size(m)
 		bs   = make([]byte, size)
 	)
-	n := ser.Marshal(m, bs)
+	n := mapMUS.Marshal(m, bs)
 	fmt.Printf("Marshaled %d bytes\n", n)
 
 	// 3. Unmarshal
-	m, n, err := ser.Unmarshal(bs)
+	m, n, err := mapMUS.Unmarshal(bs)
 	if err != nil {
 		panic(err)
 	}

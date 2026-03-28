@@ -14,7 +14,7 @@ func MakeTwoPtrsSer() mus.Serializer[TwoPtrs] {
 		revPtrMap = com.NewReversePtrMap()
 		ser       = NewTwoPtrsSer(ptrMap, revPtrMap)
 	)
-	return pm.Wrap[TwoPtrs](ptrMap, revPtrMap, ser)
+	return pm.Wrap(ptrMap, revPtrMap, ser)
 }
 
 func MakeThreePtrsSer() mus.Serializer[ThreePtrs] {
@@ -23,18 +23,18 @@ func MakeThreePtrsSer() mus.Serializer[ThreePtrs] {
 		revPtrMap = com.NewReversePtrMap()
 		ser       = NewThreePtrsSer(ptrMap, revPtrMap)
 	)
-	return pm.Wrap[ThreePtrs](ptrMap, revPtrMap, ser)
+	return pm.Wrap(ptrMap, revPtrMap, ser)
 }
 
 // NewTwoPtrsSer creates a new TwoPtrs serializer.
 func NewTwoPtrsSer(ptrMap *com.PtrMap, revPtrMap *com.ReversePtrMap) twoPtrsSer {
-	strPtrSer := pm.NewPtrSer[string](ptrMap, revPtrMap, ord.String)
+	strPtrSer := pm.NewPtrSer(ptrMap, revPtrMap, ord.String)
 	return twoPtrsSer{strPtrSer}
 }
 
 func NewThreePtrsSer(ptrMap *com.PtrMap, revPtrMap *com.ReversePtrMap) mus.Serializer[ThreePtrs] {
 	twoSer := NewTwoPtrsSer(ptrMap, revPtrMap)
-	strPtrSer := pm.NewPtrSer[string](ptrMap, revPtrMap, ord.String)
+	strPtrSer := pm.NewPtrSer(ptrMap, revPtrMap, ord.String)
 	return threePtrsSer{twoSer, strPtrSer}
 }
 

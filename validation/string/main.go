@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	com "github.com/mus-format/common-go"
 	strops "github.com/mus-format/mus-go/options/string"
@@ -12,19 +13,16 @@ import (
 func main() {
 	// 1. Create a string value and a valid serializer.
 	var (
-		value = "hello world"
+		value = strings.Repeat("a", 101)
 
-		// The validator will return an error if the string length exceeds 3.
+		// The validator will return an error if the string length exceeds 100.
 		lenVl com.ValidatorFn[int] = func(length int) error {
-			if length > 3 {
+			if length > 100 {
 				return com.ErrTooLargeLength
 			}
 			return nil
 		}
 		ser = ord.NewValidStringSer(strops.WithLenValidator(lenVl))
-
-		// To specify the length serializer	use:
-		// ser = ord.NewValidStringSer(strops.WithLenSer(lenSer), ...)
 	)
 
 	// 2. Calculate the required size.

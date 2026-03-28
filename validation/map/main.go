@@ -14,58 +14,59 @@ import (
 func main() {
 	// 1. Create a map value and a valid serializer.
 	var (
-		value = map[int]string{1: "hello", 2: "world"}
+		value = make(map[int]string)
 
-		// The length validator returns an error if the map has more than 3 elements.
+		// The length validator returns an error if the map has more than 100 elements.
 		lenVl com.ValidatorFn[int] = func(length int) error {
-			if length > 3 {
+			if length > 100 {
 				return com.ErrTooLargeLength
 			}
 			return nil
 		}
-		// The key validator returns an error if a key equals 1.
+		// The key validator returns an error if a key is negative.
 		keyVl com.ValidatorFn[int] = func(key int) error {
-			if key == 1 {
-				return errors.New("bad key")
+			if key < 0 {
+				return errors.New("negative key")
 			}
 			return nil
 		}
-		// The value validator returns an error if a value equals "hello".
+		// The value validator returns an error if a value is empty.
 		valueVl com.ValidatorFn[string] = func(val string) error {
-			if val == "hello" {
-				return errors.New("bad value")
+			if val == "" {
+				return errors.New("empty value")
 			}
 			return nil
 		}
 
 		// Each of the validators could be nil.
-		ser = ord.NewValidMapSer(
+		mapMUS = ord.NewValidMapSer(
 			varint.Int,
 			ord.String,
 			mapops.WithLenValidator[int, string](lenVl),
 			mapops.WithKeyValidator[int, string](keyVl),
 			mapops.WithValueValidator[int](valueVl),
 		)
-
-		// To specify the length serializer use:
-		// ser = ord.NewValidMapSer[int, string](varint.Int, ord.String,
-		//    mapops.WithLenSer[int, string](lenSer), ...)
 	)
+
+	// Fill the map to trigger the length validator.
+	for i := range 101 {
+		value[i] = "hello"
+	}
 
 	// 2. Calculate the required size.
 	var (
-		size = ser.Size(value)
+		size = mapMUS.Size(value)
 		bs   = make([]byte, size)
 	)
 
 	// 3. Marshal the map into the byte slice.
-	n := ser.Marshal(value, bs)
+	n := mapMUS.Marshal(value, bs)
 	fmt.Printf("Marshal %d bytes\n", n)
 
 	// 4. Unmarshal back into a new map.
 	// Unmarshalling stops immediately when any validator returns an error.
-	// In this case, we expect a key validation error.
-	value1, n, err := ser.Unmarshal(bs)
+	// In this case, we expect a length validation error.
+	value1, n, err := mapMUS.Unmarshal(bs)
 	if err != nil {
 		fmt.Printf("Unmarshal failed as expected: %v\n", err)
 	} else {

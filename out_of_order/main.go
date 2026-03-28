@@ -24,13 +24,13 @@ func main() {
 
 	// Get the third number (15)
 	num, _, _ := varint.Int.Unmarshal(bs[offset1+offset2:])
-	fmt.Println(num) // Output: 15
+	fmt.Printf("Third number: %d\n", num)
 
 	// Get the second number (10)
 	num, _, _ = varint.Int.Unmarshal(bs[offset1:])
-	fmt.Println(num) // Output: 10
+	fmt.Printf("Second number: %d\n", num)
 
 	// Get the first number (5)
 	num, _, _ = varint.Int.Unmarshal(bs)
-	fmt.Println(num) // Output: 5
+	fmt.Printf("First number: %d\n", num)
 }

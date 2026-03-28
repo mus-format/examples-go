@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/mus-format/mus-go/ord"
 	"github.com/mus-format/mus-go/varint"
 	assert "github.com/ymz-ncnk/assert/panic"
@@ -14,18 +16,20 @@ func init() {
 // graph.
 func main() {
 	var (
-		v   = CyclicGraph()
-		ser = MakeGraphMUS(varint.Int, ord.String)
+		v        = CyclicGraph()
+		graphMUS = MakeGraphMUS(varint.Int, ord.String)
 	)
 
 	// 1. Marshal graph.
-	bs := make([]byte, ser.Size(v))
-	ser.Marshal(v, bs)
+	bs := make([]byte, graphMUS.Size(v))
+	graphMUS.Marshal(v, bs)
 
 	// 2. Unmarshal graph.
-	av, _, err := ser.Unmarshal(bs)
+	av, _, err := graphMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.EqualDeep(v, av)
+
+	fmt.Printf("Graph: %+v\n", av)
 }
 
 func CyclicGraph() (g Graph[int, string]) {

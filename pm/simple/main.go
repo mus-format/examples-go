@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	assert "github.com/ymz-ncnk/assert/panic"
 )
 
@@ -16,36 +18,39 @@ func main() {
 
 func SerializeTwoPtrs() {
 	var (
-		twoPtrsSer = MakeTwoPtrsSer()
+		twoPtrsMUS = MakeTwoPtrsSer()
 		v          = NewTwoPtrs("the same pointer in two fields")
 	)
 
 	// 1. Marshal TwoPtrs.
-	bs := make([]byte, twoPtrsSer.Size(v))
-	twoPtrsSer.Marshal(v, bs)
+	bs := make([]byte, twoPtrsMUS.Size(v))
+	twoPtrsMUS.Marshal(v, bs)
 
 	// 2. Unmarshal TwoPtrs.
-	av, _, err := twoPtrsSer.Unmarshal(bs)
+	av, _, err := twoPtrsMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.Equal(av.ptr1, av.ptr2)
+
+	fmt.Printf("Two pointers: %+v\n", av)
 }
 
 func SerializeThreePtrs() {
 	var (
 		// ThreePtrs structure serializer uses TwoPtrs serializer.
-		threePtrsSer = MakeThreePtrsSer()
+		threePtrsMUS = MakeThreePtrsSer()
 		v            = NewThreePtrs("the same pointer in three fields")
 	)
 
 	// 1. Marshal ThreePtrs.
-	bs := make([]byte, threePtrsSer.Size(v))
-	threePtrsSer.Marshal(v, bs)
+	bs := make([]byte, threePtrsMUS.Size(v))
+	threePtrsMUS.Marshal(v, bs)
 
 	// 2. Unmarshal ThreePtrs.
-	av, _, err := threePtrsSer.Unmarshal(bs)
+	av, _, err := threePtrsMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.Equal(av.ptr1, av.ptr2)
 	assert.Equal(av.ptr1, av.ptr3)
+	fmt.Printf("Three pointers: %+v\n", av)
 }
 
 func NewTwoPtrs(str string) TwoPtrs {

@@ -12,21 +12,21 @@ import (
 func main() {
 	// 1. Initialize the serializer
 	// varint.Int is the serializer of the slice's elements.
-	ser := ord.NewSliceSer(varint.Int)
+	sliceMUS := ord.NewSliceSer(varint.Int)
 	// To specify length serializer use:
 	// ser = ord.NewSliceSer[int](varint.Int, slops.WithLenSer(lenSer))
 
 	// 2. Marshal
 	var (
 		sl   = []int{1, 2, 3}
-		size = ser.Size(sl)
+		size = sliceMUS.Size(sl)
 		bs   = make([]byte, size)
 	)
-	n := ser.Marshal(sl, bs)
+	n := sliceMUS.Marshal(sl, bs)
 	fmt.Printf("Marshaled %d bytes\n", n)
 
 	// 3. Unmarshal
-	sl, n, err := ser.Unmarshal(bs)
+	sl, n, err := sliceMUS.Unmarshal(bs)
 	if err != nil {
 		panic(err)
 	}

@@ -14,7 +14,7 @@ func MakeLinkedListMUS[T any](valMUS mus.Serializer[T]) mus.Serializer[LinkedLis
 		revPtrMap = com.NewReversePtrMap()
 		ser       = NewLinkedListMUS(ptrMap, revPtrMap, valMUS)
 	)
-	return pm.Wrap[LinkedList[T]](ptrMap, revPtrMap, ser)
+	return pm.Wrap(ptrMap, revPtrMap, ser)
 }
 
 // NewLinkedListMUS creates a new LinkedList serializer.
@@ -25,7 +25,7 @@ func NewLinkedListMUS[T any](ptrMap *com.PtrMap, revPtrMap *com.ReversePtrMap,
 		elPtrMUS mus.Serializer[*Elem[T]]
 		elMUS    = elemMUS[T]{valMUS, &elPtrMUS}
 	)
-	elPtrMUS = pm.NewPtrSer[Elem[T]](ptrMap, revPtrMap, elMUS)
+	elPtrMUS = pm.NewPtrSer(ptrMap, revPtrMap, elMUS)
 	return linkedListMUS[T]{elPtrMUS}
 }
 

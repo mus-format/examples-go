@@ -13,19 +13,19 @@ import (
 func main() {
 	// 1. Create a slice value and a valid serializer.
 	var (
-		value = []string{"hello", "world"}
+		value []string
 
-		// The length validator returns an error if the slice has more than 3 elements.
+		// The length validator returns an error if the slice has more than 100 elements.
 		lenVl com.ValidatorFn[int] = func(length int) error {
-			if length > 3 {
+			if length > 100 {
 				return com.ErrTooLargeLength
 			}
 			return nil
 		}
-		// The element validator returns an error if any element equals "hello".
+		// The element validator returns an error if any element is empty.
 		elemVl com.ValidatorFn[string] = func(elem string) error {
-			if elem == "hello" {
-				return errors.New("bad element")
+			if elem == "" {
+				return errors.New("empty element")
 			}
 			return nil
 		}
@@ -36,10 +36,12 @@ func main() {
 			slops.WithLenValidator[string](lenVl),
 			slops.WithElemValidator(elemVl),
 		)
-
-		// To specify the length serializer use:
-		// ser = ord.NewValidSliceSer[string](ord.String, slops.WithLenSer[string](lenSer), ...)
 	)
+
+	// Fill the slice to trigger the length validator.
+	for i := 0; i < 101; i++ {
+		value = append(value, "hello")
+	}
 
 	// 2. Calculate the required size.
 	var (
@@ -53,7 +55,7 @@ func main() {
 
 	// 4. Unmarshal back into a new slice.
 	// Unmarshalling stops immediately when any validator returns an error.
-	// In this case, we expect an element validation error.
+	// In this case, we expect a length validation error.
 	value1, n, err := ser.Unmarshal(bs)
 	if err != nil {
 		fmt.Printf("Unmarshal failed as expected: %v\n", err)

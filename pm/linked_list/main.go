@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/mus-format/mus-go/varint"
 	assert "github.com/ymz-ncnk/assert/panic"
 )
@@ -13,18 +15,20 @@ func init() {
 // list.
 func main() {
 	var (
-		v   = ShortLinkedList()
-		ser = MakeLinkedListMUS[int](varint.PositiveInt)
+		v             = ShortLinkedList()
+		linkedListMUS = MakeLinkedListMUS[int](varint.PositiveInt)
 	)
 
 	// 1. Marshal list.
-	bs := make([]byte, ser.Size(v))
-	ser.Marshal(v, bs)
+	bs := make([]byte, linkedListMUS.Size(v))
+	linkedListMUS.Marshal(v, bs)
 
 	// 2. Unmarshal list.
-	av, _, err := ser.Unmarshal(bs)
+	av, _, err := linkedListMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.EqualDeep(v, av)
+
+	fmt.Printf("Linked list: %+v\n", av)
 }
 
 func ShortLinkedList() (l LinkedList[int]) {

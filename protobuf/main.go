@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/brianvoe/gofakeit"
 	assert "github.com/ymz-ncnk/assert/panic"
@@ -61,8 +62,9 @@ func MarshalMusGo_UnmarshalProtobuf(data *DataV1) {
 	adata := DataV1{}
 	err := proto.Unmarshal(bs, &adata)
 	assert.EqualError(err, nil)
-
 	assert.Equal(data.String(), adata.String())
+
+	fmt.Printf("DataV1: %+v\n", &adata)
 }
 
 func MarshalDataV1_UnmarshalDataV2(dataV1 *DataV1) {
@@ -71,10 +73,11 @@ func MarshalDataV1_UnmarshalDataV2(dataV1 *DataV1) {
 
 	dataV2, _, err := DataV2Protobuf.Unmarshal(bs)
 	assert.EqualError(err, nil)
-
 	if err := same(dataV1, dataV2); err != nil {
 		panic(err)
 	}
+
+	fmt.Printf("DataV1 migrated to DataV2: %+v\n", dataV2)
 }
 
 func MarshalDataV2_UnmarshalDataV1(dataV2 *DataV2) {
@@ -83,10 +86,11 @@ func MarshalDataV2_UnmarshalDataV1(dataV2 *DataV2) {
 
 	dataV1, _, err := DataV1Protobuf.Unmarshal(bs)
 	assert.EqualError(err, nil)
-
 	if err := same(dataV1, dataV2); err != nil {
 		panic(err)
 	}
+
+	fmt.Printf("DataV2 migrated to DataV1: %+v\n", dataV1)
 }
 
 func same(dataV1 *DataV1, dataV2 *DataV2) (err error) {
