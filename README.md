@@ -1,8 +1,10 @@
 # examples-go
 
-Examples of using the [mus-go](https://github.com/mus-format/mus-go) 
+Examples of using the [mus](https://github.com/mus-format/mus-go) 
 serializer.
 
+- [mus-gen](mus-gen): Code generation using the [mus-gen](https://github.com/mus-format/mus-gen-go) tool.
+- [mus-skill](mus-skill): AI-driven code generation using the [mus-skill](https://github.com/mus-format/mus-skill-go) agent skill.
 - [types](types): How to serialize `array`, `slice`, `map`, and `struct` types.
 - [validation](validation): Data validation during unmarshalling (`string`, 
   `slice`, `map`).
@@ -12,5 +14,3 @@ serializer.
 - [marshal_func](marshal_func): Demonstrates the `mus.Marshal` function.
 - [out_of_order](out_of_order): Deserializing values in reverse order.
 - [protobuf](protobuf): Implementing Protobuf-style encoding with `mus`.
-- [mus-gen](mus-gen): Code generation using the [mus-gen-go](https://github.com/mus-format/mus-gen-go) tool.
-- [mus-skill](mus-skill): AI-driven code generation using the [mus-skill-go](https://github.com/mus-format/mus-skill-go) agent skill.
