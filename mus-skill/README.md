@@ -1,11 +1,11 @@
 # mus-skill Example
 
-This example demonstrates how to use the [mus-skill-go](https://github.com/mus-format/mus-skill-go) 
+This example demonstrates how to use the [mus-skill](https://github.com/mus-format/mus-skill-go) 
 agent skill to generate a MUS serializer and tests.
 
 ## Setup
 
-The `mus-skill-go` skill was installed into `.agents/skills` directory using 
+The `mus-skill` skill was installed into `.agents/skills` directory using 
 [skills](https://github.com/vercel-labs/skills) with the following command:
 
 ```bash

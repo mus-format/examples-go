@@ -1,6 +1,6 @@
 # mus-gen Example
 
-This example demonstrates how to use the [mus-gen-go](https://github.com/mus-format/mus-gen-go) 
+This example demonstrates how to use the [mus-gen](https://github.com/mus-format/mus-gen-go) 
 tool for code generation.
 
 ## How it Works
