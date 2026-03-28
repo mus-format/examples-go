@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "mus-skill-go": {
+      "source": "mus-format/mus-skill-go",
+      "sourceType": "github",
+      "computedHash": "47a12aa935f9955a8a6f136b430c6669d9e647c92a052335727c1f0936471fb9"
+    }
+  }
+}
