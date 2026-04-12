@@ -64,7 +64,7 @@ func MarshalMusGo_UnmarshalProtobuf(data *DataV1) {
 	assert.EqualError(err, nil)
 	assert.Equal(data.String(), adata.String())
 
-	fmt.Printf("DataV1: %+v\n", &adata)
+	fmt.Printf("DataV1: %+v\n\n", &adata)
 }
 
 func MarshalDataV1_UnmarshalDataV2(dataV1 *DataV1) {
@@ -77,7 +77,7 @@ func MarshalDataV1_UnmarshalDataV2(dataV1 *DataV1) {
 		panic(err)
 	}
 
-	fmt.Printf("DataV1 migrated to DataV2: %+v\n", dataV2)
+	fmt.Printf("DataV1 migrated to DataV2: %+v\n\n", dataV2)
 }
 
 func MarshalDataV2_UnmarshalDataV1(dataV2 *DataV2) {
@@ -90,7 +90,7 @@ func MarshalDataV2_UnmarshalDataV1(dataV2 *DataV2) {
 		panic(err)
 	}
 
-	fmt.Printf("DataV2 migrated to DataV1: %+v\n", dataV1)
+	fmt.Printf("DataV2 migrated to DataV1: %+v\n\n", dataV1)
 }
 
 func same(dataV1 *DataV1, dataV2 *DataV2) (err error) {
