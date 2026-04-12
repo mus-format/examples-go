@@ -34,4 +34,4 @@ func (s typedIntMUS) Skip(bs []byte) (n int, err error) {
 }
 
 // Typed serializers
-var TypedIntTypedMUS = typed.NewTypedSer(TypedIntDTM, TypedIntMUS)
+var TypedIntTypedMUS = typed.NewSer(TypedIntDTM, TypedIntMUS)

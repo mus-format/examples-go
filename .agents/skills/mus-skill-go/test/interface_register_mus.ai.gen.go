@@ -119,10 +119,10 @@ func (s impl6MUS) Skip(bs []byte) (n int, err error) {
 
 // Typed serializers
 var (
-	Impl3TypedMUS = typed.NewTypedSer(Impl3DTM, Impl3MUS)
-	Impl4TypedMUS = typed.NewTypedSer(Impl4DTM, Impl4MUS)
-	Impl5TypedMUS = typed.NewTypedSer(Impl5DTM, Impl5MUS)
-	Impl6TypedMUS = typed.NewTypedSer(Impl6DTM, Impl6MUS)
+	Impl3TypedMUS = typed.NewSer(Impl3DTM, Impl3MUS)
+	Impl4TypedMUS = typed.NewSer(Impl4DTM, Impl4MUS)
+	Impl5TypedMUS = typed.NewSer(Impl5DTM, Impl5MUS)
+	Impl6TypedMUS = typed.NewSer(Impl6DTM, Impl6MUS)
 )
 
 // InterfaceRegisterMUS

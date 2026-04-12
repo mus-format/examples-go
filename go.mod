@@ -8,8 +8,8 @@ require (
 	github.com/brianvoe/gofakeit v3.18.0+incompatible
 	github.com/mus-format/common-go v0.0.0-20260324174526-3d8f1741b5a2
 	github.com/mus-format/ext-protobuf-go v0.0.0-20260328200958-82e3c3e92c35
-	github.com/mus-format/mus-gen-go v0.3.1-0.20260328002543-8ca9346b5ca1
-	github.com/mus-format/mus-go v0.9.1
+	github.com/mus-format/mus-gen-go v0.5.0
+	github.com/mus-format/mus-go v0.10.0
 	github.com/ymz-ncnk/assert v0.0.0-20260108210721-155bc9aa4282
 	github.com/ymz-ncnk/mok v0.2.2
 	google.golang.org/protobuf v1.36.6

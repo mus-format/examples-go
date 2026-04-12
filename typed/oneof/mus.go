@@ -26,8 +26,8 @@ var (
 
 // DTS (Data Type metadata Support) definitions.
 var (
-	CopyTypedMUS   = typed.NewTypedSer[Copy](CopyDTM, CopyMUS)
-	InsertTypedMUS = typed.NewTypedSer[Insert](InsertDTM, InsertMUS)
+	CopyTypedMUS   = typed.NewSer[Copy](CopyDTM, CopyMUS)
+	InsertTypedMUS = typed.NewSer[Insert](InsertDTM, InsertMUS)
 )
 
 // instructionMUS implements mus.Serializer for Instruction.

@@ -73,7 +73,7 @@ const (
 
 // Typed serializers
 var (
-	FullInterfaceImplTypedMUS = typed.NewTypedSer(FullInterfaceImplDTM, FullInterfaceImplMUS)
+	FullInterfaceImplTypedMUS = typed.NewSer(FullInterfaceImplDTM, FullInterfaceImplMUS)
 )
 
 // FullInterfaceMUS

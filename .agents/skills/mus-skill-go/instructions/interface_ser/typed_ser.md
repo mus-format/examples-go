@@ -15,7 +15,7 @@ The generator uses this constant to create the typed serializer.
 To generate a typed serializer:
 1. Generate a common serializer for a type if one doesn't already exist.
 2. Generate a DTM constant if one doesn't already exist.
-3. Use `typed.NewTypedSer` to create a typed serializer.
+3. Use `typed.NewSer` to create a typed serializer.
 
 Example:
 
@@ -27,5 +27,5 @@ type Foo struct {...}
 
 var FooMUS = fooSer{}
 
-var FooTypedMUS = typed.NewTypedSer(FooDTM, FooMUS)
+var FooTypedMUS = typed.NewSer(FooDTM, FooMUS)
 ```

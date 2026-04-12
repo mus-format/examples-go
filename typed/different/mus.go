@@ -21,8 +21,8 @@ var (
 
 // DTS (Data Type metadata Support) definitions.
 var (
-	FooTypedMUS = typed.NewTypedSer[Foo](FooDTM, FooMUS)
-	BarTypedMUS = typed.NewTypedSer[Bar](BarDTM, BarMUS)
+	FooTypedMUS = typed.NewSer[Foo](FooDTM, FooMUS)
+	BarTypedMUS = typed.NewSer[Bar](BarDTM, BarMUS)
 )
 
 // fooMUS implements mus.Serializer for Foo.

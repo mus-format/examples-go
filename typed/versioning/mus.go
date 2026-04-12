@@ -25,8 +25,8 @@ var (
 
 // DTSs (Data Type metadata Support).
 var (
-	FooV1TypedMUS = typed.NewTypedSer[FooV1](FooV1DTM, FooV1MUS)
-	FooV2TypedMUS = typed.NewTypedSer[FooV2](FooV2DTM, FooV2MUS)
+	FooV1TypedMUS = typed.NewSer[FooV1](FooV1DTM, FooV1MUS)
+	FooV2TypedMUS = typed.NewSer[FooV2](FooV2DTM, FooV2MUS)
 )
 
 // fooV1MUS implements mus.Serializer for FooV1.

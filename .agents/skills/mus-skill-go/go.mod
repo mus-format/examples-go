@@ -4,8 +4,8 @@ go 1.24
 
 require (
 	github.com/mus-format/common-go v0.0.0-20260324174526-3d8f1741b5a2
-	github.com/mus-format/mus-go v0.9.1
-	github.com/mus-format/mus-stream-go v0.9.1
+	github.com/mus-format/mus-go v0.10.0
+	github.com/mus-format/mus-stream-go v0.10.0
 )
 
 require (

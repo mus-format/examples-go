@@ -5,9 +5,9 @@ description: Generate MUS serializers for Go types.
 
 # MUS Generation Skill
 
-This skill provides modular instructions for generating MUS serializers for Go 
-types. It supports both `mus-go` (`[]byte` based) and `mus-stream-go` 
-(`io.Writer`/`io.Reader` based) flavors.
+This skill provides modular instructions for generating MUS v0.10.0 serializers 
+for Go types. It supports both `github.com/mus-format/mus-go` (`[]byte` based) 
+and `github.com/mus-format/mus-stream-go` (`io.Writer`/`io.Reader` based) flavors.
 
 ## Entry Point
 
