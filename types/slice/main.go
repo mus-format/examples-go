@@ -23,7 +23,7 @@ func main() {
 		bs   = make([]byte, size)
 	)
 	n := sliceMUS.Marshal(sl, bs)
-	fmt.Printf("Marshaled %d bytes\n", n)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", sl, n, bs)
 
 	// 3. Unmarshal
 	sl, n, err := sliceMUS.Unmarshal(bs)
@@ -31,5 +31,5 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Unmarshaled %d bytes, slice: %v\n", n, sl)
+	fmt.Printf("Unmarshaled back: %v\n", sl)
 }

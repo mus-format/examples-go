@@ -31,5 +31,6 @@ func main() {
 	assert.EqualError(err, nil)
 	assert.EqualDeep(foo, afoo)
 
-	fmt.Printf("AI-generated serializer result: %+v\n", afoo)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", foo, len(bs), bs)
+	fmt.Printf("Unmarshaled back: %+v\n", afoo)
 }

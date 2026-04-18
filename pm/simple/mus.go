@@ -17,11 +17,11 @@ func MakeTwoPtrsSer() mus.Serializer[TwoPtrs] {
 	return pm.Wrap(ptrMap, revPtrMap, ser)
 }
 
-func MakeThreePtrsSer() mus.Serializer[ThreePtrs] {
+func MakeEmbeddedPtrsSer() mus.Serializer[EmbeddedPtrs] {
 	var (
 		ptrMap    = com.NewPtrMap()
 		revPtrMap = com.NewReversePtrMap()
-		ser       = NewThreePtrsSer(ptrMap, revPtrMap)
+		ser       = NewEmbeddedPtrsSer(ptrMap, revPtrMap)
 	)
 	return pm.Wrap(ptrMap, revPtrMap, ser)
 }
@@ -32,10 +32,10 @@ func NewTwoPtrsSer(ptrMap *com.PtrMap, revPtrMap *com.ReversePtrMap) twoPtrsSer 
 	return twoPtrsSer{strPtrSer}
 }
 
-func NewThreePtrsSer(ptrMap *com.PtrMap, revPtrMap *com.ReversePtrMap) mus.Serializer[ThreePtrs] {
+func NewEmbeddedPtrsSer(ptrMap *com.PtrMap, revPtrMap *com.ReversePtrMap) mus.Serializer[EmbeddedPtrs] {
 	twoSer := NewTwoPtrsSer(ptrMap, revPtrMap)
 	strPtrSer := pm.NewPtrSer(ptrMap, revPtrMap, ord.String)
-	return threePtrsSer{twoSer, strPtrSer}
+	return embeddedPtrsSer{twoSer, strPtrSer}
 }
 
 // twoPtrsSer implements mus.Serializer for TwoPtrs.
@@ -76,18 +76,18 @@ func (s twoPtrsSer) Skip(bs []byte) (n int, err error) {
 	return
 }
 
-// threePtrsSer implements mus.Serializer for ThreePtrs.
-type threePtrsSer struct {
+// embeddedPtrsSer implements mus.Serializer for EmbeddedPtrs.
+type embeddedPtrsSer struct {
 	twoSer    twoPtrsSer
 	strPtrSer mus.Serializer[*string]
 }
 
-func (s threePtrsSer) Marshal(p ThreePtrs, bs []byte) (n int) {
+func (s embeddedPtrsSer) Marshal(p EmbeddedPtrs, bs []byte) (n int) {
 	n = s.twoSer.Marshal(p.TwoPtrs, bs)
 	return n + s.strPtrSer.Marshal(p.ptr3, bs[n:])
 }
 
-func (s threePtrsSer) Unmarshal(bs []byte) (p ThreePtrs, n int, err error) {
+func (s embeddedPtrsSer) Unmarshal(bs []byte) (p EmbeddedPtrs, n int, err error) {
 	p.TwoPtrs, n, err = s.twoSer.Unmarshal(bs)
 	if err != nil {
 		return
@@ -98,12 +98,12 @@ func (s threePtrsSer) Unmarshal(bs []byte) (p ThreePtrs, n int, err error) {
 	return
 }
 
-func (s threePtrsSer) Size(p ThreePtrs) (size int) {
+func (s embeddedPtrsSer) Size(p EmbeddedPtrs) (size int) {
 	size = s.twoSer.Size(p.TwoPtrs)
 	return size + s.strPtrSer.Size(p.ptr3)
 }
 
-func (s threePtrsSer) Skip(bs []byte) (n int, err error) {
+func (s embeddedPtrsSer) Skip(bs []byte) (n int, err error) {
 	n, err = s.twoSer.Skip(bs)
 	if err != nil {
 		return

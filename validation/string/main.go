@@ -13,11 +13,11 @@ import (
 func main() {
 	// 1. Create a string value and a valid serializer.
 	var (
-		value = strings.Repeat("a", 101)
+		value = strings.Repeat("a", 11)
 
-		// The validator will return an error if the string length exceeds 100.
+		// The validator will return an error if the string length exceeds 10.
 		lenVl com.ValidatorFn[int] = func(length int) error {
-			if length > 100 {
+			if length > 10 {
 				return com.ErrTooLargeLength
 			}
 			return nil
@@ -33,15 +33,15 @@ func main() {
 
 	// 3. Marshal the string into the byte slice.
 	n := ser.Marshal(value, bs)
-	fmt.Printf("Marshal %d bytes\n", n)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", value, n, bs)
 
 	// 4. Unmarshal back into a new string.
 	// Unmarshalling stops immediately when a validator returns an error.
 	// In this case, we expect a length validation error.
 	value1, n, err := ser.Unmarshal(bs)
 	if err != nil {
-		fmt.Printf("Unmarshal failed as expected: %v\n", err)
+		fmt.Printf("Unmarshaled failed as expected: %v\n", err)
 	} else {
-		fmt.Printf("Unmarshal %d bytes, String: %s\n", n, value1)
+		fmt.Printf("Unmarshaled %d bytes, String: %s\n", n, value1)
 	}
 }

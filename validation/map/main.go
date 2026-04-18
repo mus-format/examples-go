@@ -16,9 +16,9 @@ func main() {
 	var (
 		value = make(map[int]string)
 
-		// The length validator returns an error if the map has more than 100 elements.
+		// The length validator returns an error if the map has more than 2 elements.
 		lenVl com.ValidatorFn[int] = func(length int) error {
-			if length > 100 {
+			if length > 2 {
 				return com.ErrTooLargeLength
 			}
 			return nil
@@ -49,7 +49,7 @@ func main() {
 	)
 
 	// Fill the map to trigger the length validator.
-	for i := range 101 {
+	for i := 0; i < 3; i++ {
 		value[i] = "hello"
 	}
 
@@ -61,15 +61,15 @@ func main() {
 
 	// 3. Marshal the map into the byte slice.
 	n := mapMUS.Marshal(value, bs)
-	fmt.Printf("Marshal %d bytes\n", n)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", value, n, bs)
 
 	// 4. Unmarshal back into a new map.
 	// Unmarshalling stops immediately when any validator returns an error.
 	// In this case, we expect a length validation error.
 	value1, n, err := mapMUS.Unmarshal(bs)
 	if err != nil {
-		fmt.Printf("Unmarshal failed as expected: %v\n", err)
+		fmt.Printf("Unmarshaled failed as expected: %v\n", err)
 	} else {
-		fmt.Printf("Unmarshal %d bytes, Map: %+v\n", n, value1)
+		fmt.Printf("Unmarshaled %d bytes, Map: %+v\n", n, value1)
 	}
 }

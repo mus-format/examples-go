@@ -8,11 +8,11 @@ import (
 
 // This example demonstrates how to use the mus.Marshal function.
 func main() {
-	// 1. Marshal Foo.
+	// Marshal Foo (numeric field) and print the result.
 	bs := mus.Marshal(Foo{num: 10})
-	fmt.Printf("Marshalled Foo: %v\n", bs)
+	fmt.Printf("Marshaled Foo: %v\n", bs)
 
-	// 2. Marshal Bar.
+	// Marshal Bar (string field) and print the result.
 	bs = mus.Marshal(Bar{str: "10"})
-	fmt.Printf("Marshalled Bar: %v\n", bs)
+	fmt.Printf("Marshaled Bar: %v\n", bs)
 }

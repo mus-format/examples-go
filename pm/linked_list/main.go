@@ -16,19 +16,20 @@ func init() {
 func main() {
 	var (
 		v             = ShortLinkedList()
-		linkedListMUS = MakeLinkedListMUS[int](varint.PositiveInt)
+		linkedListMUS = MakeLinkedListMUS(varint.PositiveInt)
 	)
 
-	// 1. Marshal list.
+	// Marshal list.
 	bs := make([]byte, linkedListMUS.Size(v))
 	linkedListMUS.Marshal(v, bs)
 
-	// 2. Unmarshal list.
+	// Unmarshal list.
 	av, _, err := linkedListMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.EqualDeep(v, av)
 
-	fmt.Printf("Linked list: %+v\n", av)
+	fmt.Printf("Marshaled %v → %d bytes: %x\n", v, len(bs), bs)
+	fmt.Printf("Unmarshaled back: %v\n", av)
 }
 
 func ShortLinkedList() (l LinkedList[int]) {

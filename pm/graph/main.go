@@ -29,7 +29,8 @@ func main() {
 	assert.EqualError(err, nil)
 	assert.EqualDeep(v, av)
 
-	fmt.Printf("Graph: %+v\n", av)
+	fmt.Printf("Marshaled %v → %d bytes: %x\n", v, len(bs), bs)
+	fmt.Printf("Unmarshaled back: %v\n", av)
 }
 
 func CyclicGraph() (g Graph[int, string]) {

@@ -15,9 +15,9 @@ func main() {
 	var (
 		value []string
 
-		// The length validator returns an error if the slice has more than 100 elements.
+		// The length validator returns an error if the slice has more than 2 elements.
 		lenVl com.ValidatorFn[int] = func(length int) error {
-			if length > 100 {
+			if length > 2 {
 				return com.ErrTooLargeLength
 			}
 			return nil
@@ -39,7 +39,7 @@ func main() {
 	)
 
 	// Fill the slice to trigger the length validator.
-	for i := 0; i < 101; i++ {
+	for i := 0; i < 3; i++ {
 		value = append(value, "hello")
 	}
 
@@ -51,15 +51,15 @@ func main() {
 
 	// 3. Marshal the slice into the byte slice.
 	n := ser.Marshal(value, bs)
-	fmt.Printf("Marshal %d bytes\n", n)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", value, n, bs)
 
 	// 4. Unmarshal back into a new slice.
 	// Unmarshalling stops immediately when any validator returns an error.
 	// In this case, we expect a length validation error.
 	value1, n, err := ser.Unmarshal(bs)
 	if err != nil {
-		fmt.Printf("Unmarshal failed as expected: %v\n", err)
+		fmt.Printf("Unmarshaled failed as expected: %v\n", err)
 	} else {
-		fmt.Printf("Unmarshal %d bytes, Slice: %+v\n", n, value1)
+		fmt.Printf("Unmarshaled %d bytes, Slice: %+v\n", n, value1)
 	}
 }

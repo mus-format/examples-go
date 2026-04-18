@@ -19,7 +19,7 @@ func main() {
 
 	// 3. Marshal the struct into the byte slice.
 	n := FooMUS.Marshal(v, bs)
-	fmt.Printf("Marshal %d bytes\n", n)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", v, n, bs)
 
 	// 4. Unmarshal back into a new struct.
 	v2, n, err := FooMUS.Unmarshal(bs)
@@ -27,7 +27,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Unmarshal %d bytes, Foo: %+v\n", n, v2)
+	fmt.Printf("Unmarshaled back: %+v\n", v2)
 
 	// 5. Demonstrate Skip.
 	// This returns the number of bytes occupied by the Foo struct without
@@ -36,5 +36,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Skip %d bytes\n", n)
+	fmt.Printf("Skipped %d bytes\n", n)
 }

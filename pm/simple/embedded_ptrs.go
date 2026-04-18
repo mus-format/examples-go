@@ -1,6 +1,6 @@
 package main
 
-type ThreePtrs struct {
+type EmbeddedPtrs struct {
 	TwoPtrs
 	ptr3 *string
 }

@@ -41,12 +41,15 @@ func (g *Graph[T, V]) AddEdge(from, to T, weight int) (err error) {
 	return
 }
 
-func (g *Graph[T, V]) String() string {
+func (g Graph[T, V]) String() string {
 	var buf bytes.Buffer
 	for id, v := range g.Vertices {
-		buf.WriteString(fmt.Sprintf("%v: %v\n", id, v.Val))
-		for id, e := range v.Edges {
-			buf.WriteString(fmt.Sprintf("  %v: %v\n", id, e.Weight))
+		buf.WriteString(fmt.Sprintf("Vertex %v [Value: %v]\n", id, v.Val))
+		if len(v.Edges) > 0 {
+			buf.WriteString("  Edges:\n")
+			for destID, e := range v.Edges {
+				buf.WriteString(fmt.Sprintf("    → To %v (Weight: %v)\n", destID, e.Weight))
+			}
 		}
 	}
 	return buf.String()

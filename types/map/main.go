@@ -25,7 +25,7 @@ func main() {
 		bs   = make([]byte, size)
 	)
 	n := mapMUS.Marshal(m, bs)
-	fmt.Printf("Marshaled %d bytes\n", n)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", m, n, bs)
 
 	// 3. Unmarshal
 	m, n, err := mapMUS.Unmarshal(bs)
@@ -33,5 +33,5 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Unmarshaled %d bytes, map: %v\n", n, m)
+	fmt.Printf("Unmarshaled back: %v\n", m)
 }

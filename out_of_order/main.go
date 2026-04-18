@@ -18,6 +18,7 @@ func main() {
 	varint.Int.Marshal(15, bs[n:])
 
 	// 2. Access the data out of order (Reverse).
+	fmt.Printf("DeserialiZing 3 numbers in reverse order: 5, 10, 15\n")
 	// We use Skip to find the offsets without decoding the actual values.
 	offset1, _ := varint.Int.Skip(bs)           // Skip 5
 	offset2, _ := varint.Int.Skip(bs[offset1:]) // Skip 10

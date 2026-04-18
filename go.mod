@@ -21,3 +21,5 @@ require (
 	golang.org/x/sync v0.19.0 // indirect
 	golang.org/x/tools v0.41.0 // indirect
 )
+
+replace github.com/mus-format/mus-stream-go => ../mus-stream-go

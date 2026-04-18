@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type LinkedList[T any] struct {
 	head *Elem[T]
 	tail *Elem[T]
@@ -61,4 +63,17 @@ func (l *LinkedList[T]) Remove(e *Elem[T]) {
 	}
 	e.next.prev = e.prev
 	e.prev.next = e.next
+}
+
+func (l LinkedList[T]) String() string {
+	res := "["
+	curr := l.head
+	for curr != nil {
+		res += fmt.Sprintf("%v", curr.Val)
+		if curr.next != nil {
+			res += ", "
+		}
+		curr = curr.next
+	}
+	return res + "]"
 }

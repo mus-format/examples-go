@@ -36,7 +36,7 @@ func main() {
 	// the end the unmarshalled data is compared with the original).
 	MarshalProtobuf_UnmarshalMusGo(&dataV1)
 	// Marshal using mus-go - unmarshal using protobuf.
-	MarshalMusGo_UnmarshalProtobuf(&dataV1)
+	MarshalMUS_UnmarshalProtobuf(&dataV1)
 	// Marshal first version and unmarshal second, both using mus-go.
 	MarshalDataV1_UnmarshalDataV2(&dataV1)
 	// Marshal second version and unmarshal first one again using mus-go.
@@ -53,9 +53,10 @@ func MarshalProtobuf_UnmarshalMusGo(data *DataV1) {
 	assert.EqualError(err, nil)
 
 	assert.Equal(data.String(), adata.String())
+	fmt.Println("Marshal DataV1 using Protobuf, unmarshal MUS: ok")
 }
 
-func MarshalMusGo_UnmarshalProtobuf(data *DataV1) {
+func MarshalMUS_UnmarshalProtobuf(data *DataV1) {
 	bs := make([]byte, DataV1Protobuf.Size(data))
 	DataV1Protobuf.Marshal(data, bs)
 
@@ -64,7 +65,7 @@ func MarshalMusGo_UnmarshalProtobuf(data *DataV1) {
 	assert.EqualError(err, nil)
 	assert.Equal(data.String(), adata.String())
 
-	fmt.Printf("DataV1: %+v\n\n", &adata)
+	fmt.Println("Marshal DataV1 using MUS, unmarshal Protobuf: ok")
 }
 
 func MarshalDataV1_UnmarshalDataV2(dataV1 *DataV1) {
@@ -77,7 +78,7 @@ func MarshalDataV1_UnmarshalDataV2(dataV1 *DataV1) {
 		panic(err)
 	}
 
-	fmt.Printf("DataV1 migrated to DataV2: %+v\n\n", dataV2)
+	fmt.Println("Marshal DataV1, unmarshal DataV2 using MUS: ok")
 }
 
 func MarshalDataV2_UnmarshalDataV1(dataV2 *DataV2) {
@@ -90,7 +91,7 @@ func MarshalDataV2_UnmarshalDataV1(dataV2 *DataV2) {
 		panic(err)
 	}
 
-	fmt.Printf("DataV2 migrated to DataV1: %+v\n\n", dataV1)
+	fmt.Println("Marshal DataV2, unmarshal DataV1 using MUS: ok")
 }
 
 func same(dataV1 *DataV1, dataV2 *DataV2) (err error) {

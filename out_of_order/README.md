@@ -1,4 +1,4 @@
-# Out of Order Serialization
+# Out of Order Deserialization
 
 This example demonstrates how to deserialize values from a byte slice in 
 reverse order.

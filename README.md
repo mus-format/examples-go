@@ -1,16 +1,25 @@
-# examples-go
+# MUS Go Examples
 
-Examples of using the [mus](https://github.com/mus-format/mus-go) 
-serializer.
+The following examples demonstrate the **MUS serialization framework** (serving as a primary guide for both [mus](https://github.com/mus-format/mus-go) and [mus-stream](https://github.com/mus-format/mus-stream-go) libraries).
 
-- [mus-gen](mus-gen): Code generation using the [mus-gen](https://github.com/mus-format/mus-gen-go) tool.
-- [mus-skill](mus-skill): AI-driven code generation using the [mus-skill](https://github.com/mus-format/mus-skill-go) agent skill.
-- [types](types): How to serialize `array`, `slice`, `map`, and `struct` types.
-- [validation](validation): Data validation during unmarshalling (`string`, 
-  `slice`, `map`).
-- [typed](typed): `typed` package usage (versioning, interfaces, etc.).
-- [pm](pm): `pm` package usage to serialize linked lists and cyclic graphs.
-- [unsafe](unsafe): High-performance serialization using the `unsafe` package.
-- [marshal_func](marshal_func): Demonstrates the `mus.Marshal` function.
+## Code Generation
+
+- [mus-gen](mus-gen): Standard code generator.
+- [mus-skill](mus-skill): AI-driven code generation.
+
+## Manual Serialization
+
+- [types](types): Handling of arrays, slices, maps, and structs.
+- [validation](validation): Data validation during unmarshalling.
 - [out_of_order](out_of_order): Deserializing values in reverse order.
-- [protobuf](protobuf): Implementing Protobuf-style encoding with `mus`.
+
+## Typed Serialization & Multi-format
+
+- [typed](typed): Versioning, interfaces, DTM, etc.
+- [protobuf](protobuf): Implementing Protobuf-style encoding.
+
+## Advanced Features
+
+- [unsafe](unsafe): High-performance serialization.
+- [pm](pm): Serializing linked lists and cyclic graphs (Pointer Mapping).
+- [marshal_func](marshal_func): Using the `mus.Marshal` function.

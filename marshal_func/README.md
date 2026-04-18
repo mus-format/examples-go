@@ -1,7 +1,6 @@
-# Marshal Function
+# Marshal Function Example
 
-This example demonstrates how to use the `MarshalMUS` function from the 
-[ext-go](https://github.com/mus-format/ext-go) library.
+This example demonstrates how to use the `mus.Marshal` function.
 
 Instead of manual buffer management:
 ```go
@@ -11,5 +10,5 @@ v.MarshalMUS(bs)
 
 You can use:
 ```go
-bs := ext.MarshalMUS(v)
+bs := mus.Marshal(v)
 ```

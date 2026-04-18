@@ -13,7 +13,7 @@ func init() {
 // This example demonstrates how the pm package works.
 func main() {
 	SerializeTwoPtrs()
-	SerializeThreePtrs()
+	SerializeEmbeddedPtrs()
 }
 
 func SerializeTwoPtrs() {
@@ -31,26 +31,30 @@ func SerializeTwoPtrs() {
 	assert.EqualError(err, nil)
 	assert.Equal(av.ptr1, av.ptr2)
 
-	fmt.Printf("Two pointers: %+v\n", av)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", v, len(bs), bs)
+	fmt.Printf("Unmarshaled back: %+v\n", av)
+	fmt.Printf("Pointer identity: %p == %p\n\n", av.ptr1, av.ptr2)
 }
 
-func SerializeThreePtrs() {
+func SerializeEmbeddedPtrs() {
 	var (
-		// ThreePtrs structure serializer uses TwoPtrs serializer.
-		threePtrsMUS = MakeThreePtrsSer()
-		v            = NewThreePtrs("the same pointer in three fields")
+		// EmbeddedPtrs structure serializer uses TwoPtrs serializer.
+		embeddedPtrsMUS = MakeEmbeddedPtrsSer()
+		v               = NewEmbeddedPtrs("the same pointer in composite struct")
 	)
 
-	// 1. Marshal ThreePtrs.
-	bs := make([]byte, threePtrsMUS.Size(v))
-	threePtrsMUS.Marshal(v, bs)
+	// 1. Marshal EmbeddedPtrs.
+	bs := make([]byte, embeddedPtrsMUS.Size(v))
+	embeddedPtrsMUS.Marshal(v, bs)
 
-	// 2. Unmarshal ThreePtrs.
-	av, _, err := threePtrsMUS.Unmarshal(bs)
+	// 2. Unmarshal EmbeddedPtrs.
+	av, _, err := embeddedPtrsMUS.Unmarshal(bs)
 	assert.EqualError(err, nil)
 	assert.Equal(av.ptr1, av.ptr2)
 	assert.Equal(av.ptr1, av.ptr3)
-	fmt.Printf("Three pointers: %+v\n", av)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", v, len(bs), bs)
+	fmt.Printf("Unmarshaled back: %+v\n", av)
+	fmt.Printf("Pointer identity: %p == %p == %p\n", av.ptr1, av.ptr2, av.ptr3)
 }
 
 func NewTwoPtrs(str string) TwoPtrs {
@@ -61,9 +65,9 @@ func NewTwoPtrs(str string) TwoPtrs {
 	}
 }
 
-func NewThreePtrs(str string) ThreePtrs {
+func NewEmbeddedPtrs(str string) EmbeddedPtrs {
 	ptr := &str
-	return ThreePtrs{
+	return EmbeddedPtrs{
 		TwoPtrs: TwoPtrs{
 			ptr1: ptr,
 			ptr2: ptr,

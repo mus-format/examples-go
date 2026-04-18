@@ -1,4 +1,6 @@
-# mus-gen Example
+# Code Generation with mus-gen
+
+This example shows how to use the `mus-gen` tool to generate serializers for custom Go types.
 
 This example demonstrates how to use the [mus-gen](https://github.com/mus-format/mus-gen-go) 
 tool for code generation.

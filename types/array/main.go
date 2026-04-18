@@ -24,7 +24,7 @@ func main() {
 
 	// 3. Marshal the array into the byte slice.
 	n := arrMUS.Marshal(arr, bs)
-	fmt.Printf("Marshal %d bytes\n", n)
+	fmt.Printf("Marshaled %+v → %d bytes: %x\n", arr, n, bs)
 
 	// 4. Unmarshal back into a new array.
 	arr1, n, err := arrMUS.Unmarshal(bs)
@@ -32,7 +32,7 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("Unmarshal %d bytes, Array: %+v\n", n, arr1)
+	fmt.Printf("Unmarshaled back: %+v\n", arr1)
 
 	// 5. Demonstrate Skip.
 	// This returns the number of bytes occupied by the array without decoding.
@@ -40,5 +40,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Skip %d bytes\n", n)
+	fmt.Printf("Skipped %d bytes\n", n)
 }
